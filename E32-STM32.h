@@ -5,8 +5,8 @@
  * @date 1 November 2017
  * https://github.com/Bob0505/E32-TTL-100
  */
-#ifndef E32-TTL-100_H_
-#define E32-TTL-100_H_
+#ifndef E32-STM-32_H_
+#define E32-STM-32_H_
 
 typedef enum {
   RET_SUCCESS = 0,
@@ -130,7 +130,7 @@ struct MVerstruct {
 #pragma pack(pop)
 
 
-#define Device_A
+#define Device_B
 
 #define TIME_OUT_CNT	100
 #define MAX_TX_SIZE		58
@@ -140,4 +140,4 @@ struct MVerstruct {
 #define DEVICE_B_ADDR_H 0x05
 #define DEVICE_B_ADDR_L 0x02
 
-#endif /* E32-TTL-100_H_ */
+#endif /* E32-STM-32_H_ */

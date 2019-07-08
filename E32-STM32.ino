@@ -17,7 +17,7 @@
 bool AUX_HL;
 bool ReadAUX()
 {
-  int AUX_HL = digitalRead(AUX_PIN);
+  bool AUX_HL = digitalRead(AUX_PIN);
 
   return AUX_HL;
 }
@@ -265,6 +265,7 @@ RET_STATUS SettingModule(struct CFGstruct *pCFG)
   pCFG->ADDL = DEVICE_B_ADDR_L;
 #endif
 
+  pCFG->CHAN = 0x04; // oder 05
   pCFG->OPTION_bits.trsm_mode = TRSM_FP_MODE;
   pCFG->OPTION_bits.tsmt_pwr = TSMT_PWR_10DB;
 
@@ -326,11 +327,11 @@ RET_STATUS SendMsg()
   //TRSM_FP_MODE
   //Send format : ADDH ADDL CHAN DATA_0 DATA_1 DATA_2 ...
 #ifdef Device_A
-  uint8_t SendBuf[4] = { DEVICE_B_ADDR_H, DEVICE_B_ADDR_L, 0x17, random(0x00, 0x80)};	//for A
+  uint8_t SendBuf[8] = { DEVICE_A_ADDR_H, DEVICE_A_ADDR_L, 0x04, 'H', 'a', 'l', 'l', 'o'};	//for B
 #else
-  uint8_t SendBuf[4] = { DEVICE_A_ADDR_H, DEVICE_A_ADDR_L, 0x17, random(0x81, 0xFF)};	//for B
+  uint8_t SendBuf[8] = { DEVICE_A_ADDR_H, DEVICE_A_ADDR_L, 0x04, 'H', 'a', 'l', 'l', 'o'};	//for B
 #endif
-  E32_SERIAL.write(SendBuf, 4);
+  E32_SERIAL.write(SendBuf, 8);
 
   return STATUS;
 }
